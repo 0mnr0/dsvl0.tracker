@@ -1,3 +1,6 @@
 /.idea
 /.venv
 secret.key
+/build
+main.spec
+main.exe
