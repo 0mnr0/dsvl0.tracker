@@ -13,7 +13,7 @@ if exist "%STARTUP%" (
 if exist "%VBS%" del "%VBS%"
 if exist "%DST%\%SRC%" del "%DST%\%SRC%"
 
-if exist "%DST%" rd "%DST%"
+if exist "%DST%" rd /s /q "%DST%"
 
 echo [OK] dsvl0.tracker removed.
 pause
