@@ -1,6 +1,7 @@
 /.idea
 /.venv
-secret.key
+/dist
 /build
+secret.key
 main.spec
 main.exe

@@ -40,7 +40,7 @@ def appTracker():
         fetchResult = requests.post(trackerURL, json={"secretCode": secretCode, "activeApps": ActiveApps})
 
         if fetchResult.status_code != 200:
-            print("Failed to push data to tracker, refetching in 20 seconds")
+            print(f"Failed to push data to tracker, refetching in 20 seconds (CODE: {fetchResult.status_code})")
             time.sleep(20)
             requests.post(trackerURL, json={"secretCode": secretCode, "activeApps": ActiveApps})
 
