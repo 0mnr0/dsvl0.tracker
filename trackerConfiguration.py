@@ -1,7 +1,10 @@
 trackerURL = "https://dsvl0.space/devTracker/push"
+
 secretCode = None
 try: secretCode = open('secret.key', 'r').read()
 except: raise Exception("Secret key not found (secret.key)")
+
+trackerPushURL = "/devTracker/push"
 
 trackingData = [
     {
