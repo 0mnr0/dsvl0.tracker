@@ -1,16 +1,12 @@
-import os
-import requests
-import time
-import threading
 import subprocess
+import threading
+import time
+import requests
 from trackerConfiguration import *
 
 processExited = False
 
 def getAppList():
-    # Get tasklist
-    #tasklist = subprocess.check_output("tasklist", shell=False)
-
     tasklist = subprocess.run(["chcp", "1251", ">", "nul", "&&", "tasklist"], shell=True, capture_output=True, text=True)
     tasklist = tasklist.stdout
     appList = tasklist.split("\n")
@@ -65,7 +61,6 @@ def appTracker():
 
 def TRAY():
     import sys
-    import threading
     from pystray import Icon, MenuItem, Menu
     from PIL import Image, ImageDraw
 
@@ -76,20 +71,18 @@ def TRAY():
         draw.rectangle([16, 16, 48, 48], fill="white")
         return image
 
-    def on_exit(icon, item):
+    def on_exit(icon):
         icon.stop()
         global processExited
         processExited = True
         sys.exit(0)
 
     def trayStart():
-        # Создаём меню
         menu = Menu(
             MenuItem("dsvl0.tracker", None, enabled=False),
             Menu.SEPARATOR,
             MenuItem("Выход", on_exit)
         )
-        # Запускаем иконку
         icon = Icon("test", create_image(), menu=menu)
         icon.run()
 
