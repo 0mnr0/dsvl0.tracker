@@ -29,6 +29,7 @@ xcopy scripts dist
 
 if exist dist/build.zip del /f /q dist/build.zip
 if exist dist/build.zip.tmp del /f /q dist/build.zip.tmp
+rename dist\main.exe dsvl0.tracker.exe
 
 setlocal enabledelayedexpansion
 set "SEVENZIP_PATH=C:\Program Files\7-Zip\7z.exe"
@@ -38,5 +39,5 @@ if not exist "%SEVENZIP_PATH%" (
 )
 
 cd dist
-"%SEVENZIP_PATH%" a -tzip "build.zip" "main.exe" "service.remove.cmd" "service.install.cmd"
+"%SEVENZIP_PATH%" a -tzip "build.zip" "dsvl0.tracker.exe" "service.remove.cmd" "service.install.cmd"
 cd ..
