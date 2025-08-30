@@ -14,6 +14,7 @@ copy "%SRC%" "%DST%\%SRC%" /Y > nul
 set VBS=%DST%\run_silent.vbs
 (
 echo Set WshShell = CreateObject("WScript.Shell"^)
+echo WshShell.CurrentDirectory = "%DST%"
 echo WshShell.Run Chr(34^) ^& "%DST%\%SRC%" ^& Chr(34^), 0
 ) > "%VBS%"
 
