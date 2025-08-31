@@ -31,3 +31,17 @@ def importTracker(app):
             DevTracker.insert_one({"username": "dsvl0", "activeApps": JSON["activeApps"]})
 
         return "ok", 200
+
+    @app.route("/devTracker/get", methods=["GET"])
+    def GetDevTracker():
+        DevTracker = devTracker["devTracker"]
+
+        currentValue = DevTracker.find_one({"username": "dsvl0"})
+        apps = []
+
+        for _app_ in currentValue.get("activeApps"):
+            for trackingApp in trackerConfiguration.trackingData:
+                if _app_ == trackingApp["process"]:
+                    apps.append(trackingApp)
+
+        return apps, 200
