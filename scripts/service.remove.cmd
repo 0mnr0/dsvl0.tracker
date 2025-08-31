@@ -5,6 +5,9 @@ set DST=%APPDATA%\dsvl0
 set VBS=%DST%\run_silent.vbs
 set STARTUP=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\run_silent.vbs
 
+taskkill /f /im dsvl0.tracker.exe
+timeout /t 1 > nul
+
 if exist "%STARTUP%" (
     del "%STARTUP%"
     echo [OK] removed.
