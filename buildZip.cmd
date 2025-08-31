@@ -17,7 +17,7 @@ if not exist "%SEVENZIP_PATH%" (
 )
 
 cd dist
-"%SEVENZIP_PATH%" a -tzip "build.zip" "dsvl0.tracker.exe" "service.remove.cmd" "service.install.cmd" "service.start.cmd" "service.stop.cmd"
+"%SEVENZIP_PATH%" a -tzip "build.zip" "dsvl0.tracker.exe" "service.remove.cmd" "service.install.cmd" "service.start.cmd" "service.stop.cmd" "service.status.cmd"
 cd ..
 
 timeout /t 1 > nul
