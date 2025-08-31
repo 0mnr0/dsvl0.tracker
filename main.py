@@ -37,20 +37,15 @@ def appTracker():
 
         ActiveApps = []
         for app in appList:
-            for tracker in trackingData:
-                if app == tracker["process"]:
-                    ActiveApps.append(app)
-
-
-
-        if not processExited and not servicePaused:
+            ActiveApps.extend(app for tracker in trackingData if app == tracker["process"])
+        if not servicePaused:
             fetchResult = requests.post(trackerURL, json={"secretCode": secretCode, "activeApps": ActiveApps})
         else:
             break
 
         if fetchResult.status_code != 200:
             print(f"Failed to push data to tracker, refetching in 20 seconds (CODE: {fetchResult.status_code})")
-            for i in range(20):
+            for _ in range(20):
                 time.sleep(1)
                 if processExited or servicePaused:
                     break
@@ -60,7 +55,7 @@ def appTracker():
                 continue
             requests.post(trackerURL, json={"secretCode": secretCode, "activeApps": ActiveApps})
 
-        for i in range(60):
+        for _ in range(60):
             time.sleep(1)
             if processExited or servicePaused:
                 break
