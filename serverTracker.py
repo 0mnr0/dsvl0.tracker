@@ -2,8 +2,6 @@ from flask import *
 import trackerConfiguration
 import pymongo
 
-
-
 def importTracker(app):
     MainDB = pymongo.MongoClient("mongodb://localhost:27017/")
     devTracker = MainDB["devTracker"]
@@ -12,7 +10,7 @@ def importTracker(app):
     def push():
         JSON = request.json
         try:
-            if not "activeApps" in JSON:
+            if "activeApps" not in JSON:
                 raise Exception("Invalid [activeApps]")
 
             if JSON["secretCode"] != trackerConfiguration.secretCode:
@@ -33,11 +31,3 @@ def importTracker(app):
             DevTracker.insert_one({"username": "dsvl0", "activeApps": JSON["activeApps"]})
 
         return "ok", 200
-
-
-
-
-app = Flask(__name__)
-importTracker(app)
-app.run(port=5000, use_reloader=False, debug=True)
-
